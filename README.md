@@ -14,12 +14,6 @@ print(python_version())
 !mkdir -p build && cd build && cmake .. && make
 ```
 
-    -- Configuring done
-    -- Generating done
-    -- Build files have been written to: /home/galqiwi/current_tasks/mpi-integration/build
-    [35m[1mConsolidate compiler generated dependencies of target main[0m
-    [100%] Built target main
-
 
 Запустим файл для того, чтобы посмотреть на формат вывода
 
