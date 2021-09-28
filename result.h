@@ -41,7 +41,7 @@ struct Result {
 
     if (procid == 0) {
       double integral = 0;
-      for (size_t sender_id = 0; sender_id < num_procs; ++sender_id) {
+      for (int sender_id = 0; sender_id < num_procs; ++sender_id) {
         Result partial_result = Receive(sender_id, result);
         integral += partial_result.value;
         std::cout << "I[" << sender_id << "] = " << partial_result.value

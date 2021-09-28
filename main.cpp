@@ -1,3 +1,4 @@
+
 #include <mpi.h>
 
 #include <functional>
@@ -9,9 +10,17 @@
 #include "utils.h"
 
 int main(int argc, char* argv[]) {
-  size_t n = 1e8;
-
   MPI_Init(&argc, &argv);
+
+  if (argc == 1) {
+    utils::ExecuteInMain([]() {
+      std::cerr << "error: no arguments" << std::endl;
+    });
+    MPI_Finalize();
+    return 1;
+  }
+
+  size_t n = std::stoi(argv[1]);
 
   utils::ExecuteInMain([&]() {
     auto [procid, num_procs] = utils::GetProcessInfo();

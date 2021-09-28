@@ -19,13 +19,13 @@ struct Range {
         /* MPI_Status *status    (aka status of recv)   = */ &status);
     return {packet[0], packet[1]};
   }
-  static void Send(Range range, int reciever_id) {
+  static void Send(Range range, int receiver_id) {
     unsigned long int packet[] = {range.from, range.to};
     MPI_Send(
         /* const void *buf       (aka pointer to start) = */ &packet,
         /* int count             (aka number of words)  = */ 2,
         /* MPI_Datatype datatype (aka word type)        = */ MPI_UNSIGNED_LONG,
-        /* int dest              (aka rank of receiver) = */ reciever_id,
+        /* int dest              (aka rank of receiver) = */ receiver_id,
         /* int tag               (aka tag)              = */ 0,
         /* MPI_Comm comm         (aka communicator)     = */ MPI_COMM_WORLD);
   }

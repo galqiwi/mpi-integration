@@ -1,3 +1,5 @@
 main
 cmake-build-debug
 .idea
+build
+.ipynb_checkpoints

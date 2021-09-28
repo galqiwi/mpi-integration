@@ -4,7 +4,7 @@
 
 namespace utils {
 
-void ExecuteInMain(std::function<void()> function) {
+void ExecuteInMain(const std::function<void()>& function) {
   auto [procid, num_procs] = GetProcessInfo();
 
   if (procid == 0) {
@@ -12,7 +12,7 @@ void ExecuteInMain(std::function<void()> function) {
   }
 }
 
-double TimeIt(std::function<void()> function) {
+double TimeIt(const std::function<void()>& function) {
   double start_time = MPI_Wtime();
   function();
   double end_time = MPI_Wtime();

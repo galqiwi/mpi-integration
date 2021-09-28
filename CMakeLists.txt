@@ -4,6 +4,7 @@ project(main)
 find_package(MPI REQUIRED)
 include_directories(${MPI_INCLUDE_PATH})
 
+set(CMAKE_CXX_COMPILER "mpic++")
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(.)
