@@ -8,4 +8,4 @@ inline double integral_function(double x);
 
 double ProcessRange(Range range, size_t N);
 
-}
+}  // namespace crunching
