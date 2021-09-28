@@ -107,8 +107,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import itertools
-
-sns.set(palette='summer')
 ```
 
 
@@ -137,7 +135,7 @@ class Benchmarks:
     @property
     def speedup_data(self):
         out = self.mean_time.merge(self.min_time, left_on='n', right_on='n', suffixes=('', '_min')).convert_dtypes()
-        out['speedup'] = out.time / out.time_min
+        out['speedup'] = out.time_min / out.time
         return out
 ```
 
@@ -234,8 +232,8 @@ ax.set_yscale('log')
 ax.set_xlabel('количество ядер')
 ax.set_ylabel('ускорение')
 
-y_ticks = list(np.linspace(start=0.1, stop=1.0, num=10)) + \
-          list(np.linspace(start=1, stop=5, num=5))
+y_ticks = list(np.linspace(start=0.2, stop=1.0, num=9)) + \
+          list(np.linspace(start=1, stop=6, num=6))
 
 plt.yticks(y_ticks, [f'{y:.1f}' for y in y_ticks])
 plt.show()
