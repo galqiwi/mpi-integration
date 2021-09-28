@@ -11,7 +11,8 @@ double ProcessRange(Range range, size_t N) {
 
   double start_value = integral_function((double)range.from / ((double)N));
   for (size_t subrange_id = range.from; subrange_id < range.to; ++subrange_id) {
-    double end_value = integral_function((double)(subrange_id + 1) / ((double)N));
+    double end_value =
+        integral_function((double)(subrange_id + 1) / ((double)N));
     out += (start_value + end_value) / ((double)(2 * N));
     std::swap(start_value, end_value);
   }

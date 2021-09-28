@@ -1,6 +1,5 @@
 #include "range.h"
 
-
 #include "utils.h"
 
 Range MakeDistributedRange(size_t N) {
