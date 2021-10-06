@@ -10,13 +10,13 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(.)
 
 add_executable(main
-        crunching.cpp
-        crunching.h
-        main.cpp
-        range.cpp
-        range.h
-        result.h
-        utils.cpp
-        utils.h)
+        src/crunching.cpp
+        src/crunching.h
+        src/main.cpp
+        src/range.cpp
+        src/range.h
+        src/result.h
+        src/utils.cpp
+        src/utils.h)
 
 target_link_libraries(main ${MPI_LIBRARIES})

@@ -241,7 +241,7 @@ plt.show()
 
 
     
-![png](plot.png)
+![png](images/plot.png)
 
     
 

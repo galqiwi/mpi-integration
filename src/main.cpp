@@ -4,10 +4,10 @@
 #include <functional>
 #include <iostream>
 
-#include "crunching.h"
-#include "range.h"
-#include "result.h"
-#include "utils.h"
+#include "src/crunching.h"
+#include "src/range.h"
+#include "src/result.h"
+#include "src/utils.h"
 
 int main(int argc, char* argv[]) {
   MPI_Init(&argc, &argv);
@@ -28,21 +28,19 @@ int main(int argc, char* argv[]) {
     std::cout << "p = " << num_procs << std::endl;
   });
 
-  double multithread_integral;
-
-  double multithread_time = utils::TimeIt([&]() {
+  double multiprocess_time = utils::TimeIt([&]() {
     Range my_range = MakeDistributedRange(n);
 
     Result result{crunching::ProcessRange(my_range, n)};
 
     auto integral = Result::Merge(result);
     if (integral.has_value()) {
-      multithread_integral = integral.value();
+      integral.value();
     }
   });
 
   utils::ExecuteInMain([&]() {
-    std::cout << "Time = " << multithread_time << "s" << std::endl;
+    std::cout << "Time = " << multiprocess_time << "s" << std::endl;
   });
 
   MPI_Finalize();
