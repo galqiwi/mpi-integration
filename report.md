@@ -14,6 +14,12 @@ print(python_version())
 !mkdir -p build && cd build && cmake .. && make
 ```
 
+    -- Configuring done
+    -- Generating done
+    -- Build files have been written to: /home/galqiwi/current_tasks/mpi-integration/build
+    [35m[1mConsolidate compiler generated dependencies of target mpi-integration[0m
+    [100%] Built target mpi-integration
+
 
 Запустим файл для того, чтобы посмотреть на формат вывода
 
@@ -149,10 +155,89 @@ for n, p, measurement_id in itertools.product([10 ** 3, 10 ** 6, 10 ** 8], range
     benchmarks.add_benchmark(n, p)
 ```
 
-У нас получилось набрать статистику.
+У нас получилось набрать статистику
 
 
-Теперь построим график и увидим, что при малых $N$ ($10^4$), при увеличении количества исполнителей, время только увеличивается, а при больших ($10^6-10^8$) значениях наблюдается эффект, который заключается в том, что, чем больше $N$, тем лучше распараллеливается наш алгоритм.
+```python
+benchmarks.speedup_data.sample(n=5)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>n</th>
+      <th>p</th>
+      <th>time</th>
+      <th>time_min</th>
+      <th>speedup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>1000</td>
+      <td>4</td>
+      <td>0.000118</td>
+      <td>0.000043</td>
+      <td>0.365298</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1000</td>
+      <td>7</td>
+      <td>0.000156</td>
+      <td>0.000043</td>
+      <td>0.275046</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>100000000</td>
+      <td>4</td>
+      <td>0.399812</td>
+      <td>1.446579</td>
+      <td>3.618147</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1000000</td>
+      <td>8</td>
+      <td>0.00481</td>
+      <td>0.016999</td>
+      <td>3.534338</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000</td>
+      <td>3</td>
+      <td>0.000093</td>
+      <td>0.000043</td>
+      <td>0.46274</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Теперь построим график и увидем, что при малых $N$ ($10^4$) при увеличении количества исполнителей, время только увеличивается, а при больших ($10^6-10^8$) значениях наблюдается эффект, который заключается в том, что, чем больше $N$, тем лучше распараллеливается наш алгоритм.
 
 
 ```python
@@ -176,6 +261,6 @@ plt.show()
 
 
     
-![png](images/plot.png)
+![png](report_files/report_19_0.png)
     
 
